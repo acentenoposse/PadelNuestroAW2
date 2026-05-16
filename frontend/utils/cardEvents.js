@@ -5,8 +5,7 @@ import {
   getCantidadTotalItems
 } from './carritoStorage.js';
 
-// Lógica compartida de las tarjetas: clicks de agregar/sumar/restar,
-// actualización de los contadores y del badge del carrito en la navbar.
+
 
 export function actualizarBadgeCarrito() {
   const badge = document.getElementById('cart-badge');
