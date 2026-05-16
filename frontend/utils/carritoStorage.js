@@ -1,7 +1,3 @@
-// Carrito de compra persistido en localStorage.
-// Cada item: { id, nombre, precio, img, cantidad }
-// La clave de identidad es el id del producto (modelo Producto).
-
 const CLAVE_CARRITO = 'carritoCompra';
 
 export function getCarrito() {
@@ -13,8 +9,6 @@ function saveCarrito(carrito) {
   localStorage.setItem(CLAVE_CARRITO, JSON.stringify(carrito));
 }
 
-// Suma 1 unidad del producto (o lo agrega si no estaba).
-// Acepta una instancia de Producto o un item plano con { id, ... }.
 export function agregarProducto(producto) {
   const carrito = getCarrito();
   const id = Number(producto.id);
@@ -35,7 +29,6 @@ export function agregarProducto(producto) {
   saveCarrito(carrito);
 }
 
-// Resta 1 unidad; si llega a 0 elimina el item.
 export function restarProducto(idProducto) {
   const carrito = getCarrito();
   const id = Number(idProducto);

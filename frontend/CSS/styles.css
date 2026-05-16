@@ -1,12 +1,6 @@
-/* =========================================================
-   PADEL NUESTRO — Stylesheet profesional
-   Mantiene todos los nombres de clases del proyecto original.
-   ========================================================= */
 
-/* ---------- Fuentes ---------- */
 @import url('https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Sora:wght@500;600;700;800&display=swap');
 
-/* ---------- Design Tokens ---------- */
 :root {
   /* Paleta principal (respeta los morados/magentas del proyecto) */
   --c-primary-900: #1a0020;

@@ -10,7 +10,7 @@ window.addEventListener('load', () => {
   const footer = document.querySelector('footer');
   if (footer) footer.innerHTML = footerComponent;
 
-  // Logout: limpia la sesión y vuelve al login.
+ 
   const btnLogout = document.getElementById('btn-logout');
   if (btnLogout) {
     btnLogout.addEventListener('click', () => {
@@ -18,6 +18,6 @@ window.addEventListener('load', () => {
     });
   }
 
-  // Badge del carrito en la navbar.
+
   actualizarBadgeCarrito();
 });

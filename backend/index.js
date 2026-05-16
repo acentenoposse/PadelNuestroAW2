@@ -20,10 +20,7 @@ const port = process.env.PORT || 3000;
 
 app.use(express.json());
 
-// --- CORS ---------------------------------------------------------------
-// Permite que la interfaz consuma la API aunque se sirva desde otro origen
-// (por ejemplo Live Server en :5500). Si la interfaz la sirve este mismo
-// servidor, igual funciona porque es same-origin.
+
 app.use((req, res, next) => {
   res.header('Access-Control-Allow-Origin', '*');
   res.header('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, OPTIONS');
@@ -32,7 +29,7 @@ app.use((req, res, next) => {
   next();
 });
 
-// --- API ----------------------------------------------------------------
+// API 
 app.get('/api', (req, res) => {
   res.json({
     mensaje: 'API de e-commerce de pádel funcionando correctamente',
@@ -50,16 +47,14 @@ app.use('/ventas', ventasRoutes);
 app.use('/usuarios', usuariosRoutes);
 app.use('/categorias', categoriasRoutes);
 
-// --- Interfaz (frontend estático) --------------------------------------
-// El servidor también sirve la interfaz: un solo origen, sin problemas de
-// CORS y la vinculación servidor <-> interfaz queda explícita.
+
 app.use(express.static(frontendDir));
 
 app.get('/', (req, res) => {
   res.sendFile(path.join(frontendDir, 'index.html'));
 });
 
-// --- 404 ----------------------------------------------------------------
+
 app.use((req, res) => {
   if (req.path.startsWith('/productos') ||
       req.path.startsWith('/ventas') ||

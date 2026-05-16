@@ -1,6 +1,3 @@
-// Clase Categoria: representa una categoría/tipo de producto del catálogo.
-// Mapea el JSON que devuelve el backend ( { id, nombre } ) a un objeto
-// de dominio del frontend.
 
 export class Categoria {
   constructor({ id, nombre }) {
