@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Carrito de compras - Padel Nuestro</title>
+    <link rel="stylesheet" href="/CSS/styles.css">
+    <link rel="icon" type="image/svg+xml" href="/assets/logo.svg">
+</head>
+<body>
+    <header></header>
+
+    <main class="carrito-main">
+        <h1>Carrito de compras</h1>
+        <p id="info-usuario"></p>
+
+        <table class="tabla-carrito">
+            <thead>
+                <tr>
+                    <th>Producto</th>
+                    <th>Precio unitario</th>
+                    <th>Cantidad</th>
+                    <th>Subtotal</th>
+                    <th>Acciones</th>
+                </tr>
+            </thead>
+            <tbody id="tbody-carrito"></tbody>
+        </table>
+
+        <p id="total-carrito"></p>
+
+        <div class="carrito-acciones">
+            <button id="btn-vaciar">Vaciar carrito</button>
+            <button id="btn-comprar" class="btn-comprar">Finalizar compra</button>
+        </div>
+
+        <p id="mensaje-compra" class="mensaje-compra" hidden></p>
+    </main>
+
+    <footer></footer>
+
+    <script type="module" src="/index.js"></script>
+    <script type="module" src="/pages/carrito/carrito.js"></script>
+</body>
+</html>

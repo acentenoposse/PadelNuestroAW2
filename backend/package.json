@@ -1,0 +1,27 @@
+{
+  "name": "aw2-backend",
+  "version": "1.0.0",
+  "description": "",
+  "homepage": "https://github.com/acentenoposse/AplicacionesWeb2#readme",
+  "bugs": {
+    "url": "https://github.com/acentenoposse/AplicacionesWeb2/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/acentenoposse/AplicacionesWeb2.git"
+  },
+  "license": "ISC",
+  "author": "acentenoposse",
+  "type": "module",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "dev": "nodemon index.js",
+    "test": "echo \"No hay tests configurados\" && exit 0"
+  },
+  "dependencies": {
+    "dotenv": "^17.4.2",
+    "express": "^5.2.1",
+    "nodemon": "^3.1.14"
+  }
+}

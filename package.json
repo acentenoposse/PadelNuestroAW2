@@ -1,0 +1,15 @@
+{
+  "name": "padel-nuestro",
+  "version": "1.0.0",
+  "description": "E-commerce de pádel — monorepo (backend Express + interfaz JS/HTML/CSS)",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "install:backend": "npm install --prefix backend",
+    "postinstall": "npm run install:backend",
+    "start": "npm start --prefix backend",
+    "dev": "npm run dev --prefix backend"
+  },
+  "author": "acentenoposse",
+  "license": "ISC"
+}

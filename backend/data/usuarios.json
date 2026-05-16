@@ -1,0 +1,53 @@
+{
+  "usuarios": [
+    {
+      "id": 1,
+      "nombre": "Agustin Centeno",
+      "email": "agus@gmail.com",
+      "password": "123456",
+      "rol": "admin"
+    },
+    {
+      "id": 2,
+      "nombre": "Juan Perez",
+      "email": "juan@gmail.com",
+      "password": "123456",
+      "rol": "cliente"
+    },
+    {
+      "id": 3,
+      "nombre": "Maria Lopez",
+      "email": "maria@gmail.com",
+      "password": "123456",
+      "rol": "cliente"
+    },
+    {
+      "id": 4,
+      "nombre": "Lucas Fernandez",
+      "email": "lucas@gmail.com",
+      "password": "123456",
+      "rol": "cliente"
+    },
+    {
+      "id": 5,
+      "nombre": "Sofia Martinez",
+      "email": "sofia@gmail.com",
+      "password": "123456",
+      "rol": "cliente"
+    },
+    {
+      "id": 6,
+      "nombre": "Martin Gomez",
+      "email": "martin@gmail.com",
+      "password": "123456",
+      "rol": "cliente"
+    },
+    {
+      "id": 7,
+      "nombre": "Agustin",
+      "email": "aguscenteno2@gmail.com",
+      "password": "123456",
+      "rol": "cliente"
+    }
+  ]
+}

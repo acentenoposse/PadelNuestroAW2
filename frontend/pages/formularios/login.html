@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Iniciá Sesión - Padel Nuestro</title>
+    <link rel="stylesheet" href="/CSS/styles.css">
+    <link rel="icon" type="image/svg+xml" href="/assets/logo.svg">
+</head>
+<body class="main-login">
+    <header></header>
+
+    <main class="container-all">
+        <section class="container-izq">
+            <div class="titulo-login">
+                <h1>BIENVENIDO A PÁDEL NUESTRO</h1>
+            </div>
+            <div class="subtitulo-login">
+                <h3>¡Qué gusto verte de nuevo por acá! Ingresá con tu cuenta para conocer las novedades del mundo del pádel y ver las mejores ofertas disponibles...</h3>
+            </div>
+            <div>
+                <img class="imagen-tapia" src="/assets/tapia.jpeg" height="400" alt="Agustín Tapia">
+            </div>
+        </section>
+
+        <section class="container-der">
+            <div class="titulo-login2">
+                <h1>¡INICIÁ SESIÓN!</h1>
+            </div>
+
+            <form id="formLogin" class="formulario-login">
+                <div class="login-nom-mail">
+                    <label for="txtMail"><b>Correo Electrónico:</b></label>
+                    <input type="email" id="txtMail" name="txtMail" placeholder="Acá va tu correo..." autocomplete="username">
+                </div>
+
+                <div class="login-contrasena">
+                    <label for="txtContrasena"><b>Ingresá tu contraseña:</b></label>
+                    <input type="password" id="txtContrasena" name="txtContrasena" placeholder="Tu contraseña..." autocomplete="current-password">
+                </div>
+
+                <p id="login-error" class="login-error" hidden></p>
+
+                <div class="boton-login">
+                    <input type="submit" value="Iniciar sesión">
+                </div>
+
+                <div class="cuenta-pregunta2">
+                    <span>¿No tenés una cuenta?</span> <a href="/pages/formularios/formulario.html">Registrate gratis</a>
+                </div>
+
+                <p class="login-hint">Usuario de prueba: <b>juan@gmail.com</b> / <b>123456</b></p>
+            </form>
+        </section>
+    </main>
+
+    <footer></footer>
+
+    <script type="module" src="/index.js"></script>
+    <script type="module" src="/pages/formularios/login.js"></script>
+</body>
+</html>

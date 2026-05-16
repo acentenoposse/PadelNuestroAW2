@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registrate - Padel Nuestro</title>
+    <link rel="stylesheet" href="/CSS/styles.css">
+    <link rel="icon" type="image/svg+xml" href="/assets/logo.svg">
+</head>
+<body>
+    <header></header>
+
+    <main class="main-form">
+        <h1 class="tituloregistro">¡ESTÁS A UN PASO DE SER PARTE DE LA <br>COMUNIDAD MÁS GRANDE DE PADEL DEL PAÍS!</h1>
+
+        <form id="formRegistro">
+            <h1 class="titulo-form">¡Creá tu cuenta en Padel Nuestro!</h1>
+
+            <div class="formulario-nom-mail">
+                <label for="txtNombre"><b>Nombre y Apellido:</b></label>
+                <input type="text" id="txtNombre" name="txtNombre" placeholder="Tu nombre acá..." autocomplete="name">
+
+                <label for="txtMail"><b>Correo Electrónico:</b></label>
+                <input type="email" id="txtMail" name="txtMail" placeholder="Acá va tu correo..." autocomplete="email">
+            </div>
+
+            <div class="formulario-contrasena">
+                <label for="txtContrasena2"><b>Creá tu contraseña:</b></label>
+                <input type="password" id="txtContrasena2" name="txtContrasena2" placeholder="Mínimo 6 caracteres..." autocomplete="new-password">
+
+                <label for="txtNacimiento"><b>Fecha de Nacimiento:</b></label>
+                <input type="date" id="txtNacimiento" name="txtNacimiento">
+            </div>
+
+            <p id="registro-error" class="login-error" hidden></p>
+
+            <div class="boton-form">
+                <input type="submit" value="Comenzar!">
+            </div>
+
+            <div class="cuenta-pregunta">
+                <span>¿Ya tenés una cuenta?</span> <a href="/pages/formularios/login.html">Iniciá Sesión</a>
+            </div>
+        </form>
+    </main>
+
+    <footer></footer>
+
+    <script type="module" src="/index.js"></script>
+    <script type="module" src="/pages/formularios/formulario.js"></script>
+</body>
+</html>

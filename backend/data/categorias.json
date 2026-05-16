@@ -1,0 +1,10 @@
+{
+  "categorias": [
+    { "id": 1, "nombre": "Paletas" },
+    { "id": 2, "nombre": "Zapatillas" },
+    { "id": 3, "nombre": "Camisetas" },
+    { "id": 4, "nombre": "Ofertas" },
+    { "id": 5, "nombre": "Novedades" },
+    { "id": 6, "nombre": "Profesional" }
+  ]
+}

@@ -1,0 +1,112 @@
+{
+  "ventas": [
+    {
+      "id": 1,
+      "usuarioId": 2,
+      "fecha": "2026-04-15",
+      "total": 332000,
+      "items": [
+        {
+          "productoId": 1,
+          "cantidad": 1,
+          "precio": 320000
+        },
+        {
+          "productoId": 14,
+          "cantidad": 1,
+          "precio": 12000
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "usuarioId": 3,
+      "fecha": "2026-04-18",
+      "total": 90000,
+      "items": [
+        {
+          "productoId": 6,
+          "cantidad": 1,
+          "precio": 90000
+        }
+      ]
+    },
+    {
+      "id": 3,
+      "usuarioId": 4,
+      "fecha": "2026-04-19",
+      "total": 150000,
+      "items": [
+        {
+          "productoId": 7,
+          "cantidad": 1,
+          "precio": 110000
+        },
+        {
+          "productoId": 11,
+          "cantidad": 1,
+          "precio": 40000
+        }
+      ]
+    },
+    {
+      "id": 4,
+      "usuarioId": 5,
+      "fecha": "2026-04-20",
+      "total": 395000,
+      "items": [
+        {
+          "productoId": 2,
+          "cantidad": 1,
+          "precio": 350000
+        },
+        {
+          "productoId": 10,
+          "cantidad": 1,
+          "precio": 45000
+        }
+      ]
+    },
+    {
+      "id": 5,
+      "usuarioId": 6,
+      "fecha": "2026-04-21",
+      "total": 173000,
+      "items": [
+        {
+          "productoId": 8,
+          "cantidad": 1,
+          "precio": 105000
+        },
+        {
+          "productoId": 13,
+          "cantidad": 1,
+          "precio": 48000
+        },
+        {
+          "productoId": 14,
+          "cantidad": 1,
+          "precio": 20000
+        }
+      ]
+    },
+    {
+      "id": 6,
+      "usuarioId": 7,
+      "fecha": "2026-05-16",
+      "total": 1360000,
+      "items": [
+        {
+          "productoId": 2,
+          "cantidad": 3,
+          "precio": 350000
+        },
+        {
+          "productoId": 3,
+          "cantidad": 1,
+          "precio": 310000
+        }
+      ]
+    }
+  ]
+}
