@@ -6,10 +6,19 @@ import { API_BASE_URL } from '../config.js';
 async function request(ruta, opciones = {}) {
   const url = `${API_BASE_URL}${ruta}`;
 
+  // Si hay un token guardado (usuario logueado), lo enviamos en el header
+  // Authorization para las rutas protegidas por JWT. Leemos directamente de
+  // sessionStorage para no acoplar el apiClient con el authService.
+  const headers = { 'Content-Type': 'application/json' };
+  const token = sessionStorage.getItem('token');
+  if (token) {
+    headers.Authorization = `Bearer ${token}`;
+  }
+
   let respuesta;
   try {
     respuesta = await fetch(url, {
-      headers: { 'Content-Type': 'application/json' },
+      headers,
       ...opciones
     });
   } catch (error) {

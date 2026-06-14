@@ -3,6 +3,7 @@ import dotenv from 'dotenv';
 import path from 'path';
 import { fileURLToPath } from 'url';
 
+import { conectarDB } from './config/mongoose.js';
 import productosRoutes from './routes/productos.routes.js';
 import ventasRoutes from './routes/ventas.routes.js';
 import usuariosRoutes from './routes/usuarios.routes.js';
@@ -65,6 +66,10 @@ app.use((req, res) => {
   }
   res.status(404).sendFile(path.join(frontendDir, 'index.html'));
 });
+
+// Conectamos a MongoDB antes de levantar el servidor: si la base no está
+// disponible, no tiene sentido aceptar requests.
+await conectarDB();
 
 app.listen(port, () => {
   console.log(`Servidor corriendo en http://localhost:${port}`);

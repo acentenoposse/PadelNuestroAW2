@@ -1,9 +1,13 @@
 import { Router } from 'express';
-import { leerJson, guardarJson, obtenerSiguienteId } from '../utils/db.js';
+import bcrypt from 'bcryptjs';
+import { Usuario } from '../models/Usuario.js';
+import { obtenerSiguienteId } from '../utils/secuencia.js';
+import { generarToken } from '../utils/jwt.js';
 
 const router = Router();
 
 const EMAIL_REGEX = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+const SALT_ROUNDS = 10;
 
 // POST /usuarios  -> registro de un nuevo usuario
 router.post('/', async (req, res) => {
@@ -26,12 +30,8 @@ router.post('/', async (req, res) => {
         .json({ mensaje: 'La contraseña debe tener al menos 6 caracteres' });
     }
 
-    const dataUsuarios = await leerJson('usuarios.json');
-
     const emailNormalizado = String(email).trim().toLowerCase();
-    const emailEnUso = dataUsuarios.usuarios.some(
-      (usuario) => usuario.email.toLowerCase() === emailNormalizado
-    );
+    const emailEnUso = await Usuario.findOne({ email: emailNormalizado });
 
     if (emailEnUso) {
       return res
@@ -39,21 +39,28 @@ router.post('/', async (req, res) => {
         .json({ mensaje: 'Ya existe un usuario registrado con ese email' });
     }
 
-    const nuevoUsuario = {
-      id: obtenerSiguienteId(dataUsuarios.usuarios),
+    // Encriptamos la contraseña antes de guardarla (nunca en texto plano).
+    const passwordHasheada = await bcrypt.hash(String(password), SALT_ROUNDS);
+
+    const nuevoUsuario = await Usuario.create({
+      id: await obtenerSiguienteId(Usuario),
       nombre: String(nombre).trim(),
       email: emailNormalizado,
-      password: String(password),
+      password: passwordHasheada,
       rol: 'cliente'
+    });
+
+    const token = generarToken(nuevoUsuario);
+    const usuarioSinPassword = {
+      id: nuevoUsuario.id,
+      nombre: nuevoUsuario.nombre,
+      email: nuevoUsuario.email,
+      rol: nuevoUsuario.rol
     };
 
-    dataUsuarios.usuarios.push(nuevoUsuario);
-    await guardarJson('usuarios.json', dataUsuarios);
-
-    const { password: _password, ...usuarioSinPassword } = nuevoUsuario;
     res
       .status(201)
-      .json({ mensaje: 'Usuario registrado correctamente', usuario: usuarioSinPassword });
+      .json({ mensaje: 'Usuario registrado correctamente', usuario: usuarioSinPassword, token });
   } catch (error) {
     res
       .status(500)
@@ -70,20 +77,27 @@ router.post('/login', async (req, res) => {
       return res.status(400).json({ mensaje: 'Debe enviar email y password' });
     }
 
-    const { usuarios } = await leerJson('usuarios.json');
     const emailNormalizado = String(email).trim().toLowerCase();
-    const usuario = usuarios.find(
-      (usuarioActual) =>
-        usuarioActual.email.toLowerCase() === emailNormalizado &&
-        usuarioActual.password === password
-    );
+    const usuario = await Usuario.findOne({ email: emailNormalizado });
 
-    if (!usuario) {
+    // Comparamos la contraseña recibida contra el hash almacenado.
+    const passwordCorrecta = usuario
+      ? await bcrypt.compare(String(password), usuario.password)
+      : false;
+
+    if (!usuario || !passwordCorrecta) {
       return res.status(401).json({ mensaje: 'Credenciales inválidas' });
     }
 
-    const { password: _password, ...usuarioSinPassword } = usuario;
-    res.json({ mensaje: 'Login correcto', usuario: usuarioSinPassword });
+    const token = generarToken(usuario);
+    const usuarioSinPassword = {
+      id: usuario.id,
+      nombre: usuario.nombre,
+      email: usuario.email,
+      rol: usuario.rol
+    };
+
+    res.json({ mensaje: 'Login correcto', usuario: usuarioSinPassword, token });
   } catch (error) {
     res.status(500).json({ mensaje: 'Error al iniciar sesión', error: error.message });
   }

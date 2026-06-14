@@ -17,11 +17,15 @@
   "scripts": {
     "start": "node index.js",
     "dev": "nodemon index.js",
+    "seed": "node seed/seed.js",
     "test": "echo \"No hay tests configurados\" && exit 0"
   },
   "dependencies": {
+    "bcryptjs": "^2.4.3",
     "dotenv": "^17.4.2",
     "express": "^5.2.1",
+    "jsonwebtoken": "^9.0.2",
+    "mongoose": "^8.9.5",
     "nodemon": "^3.1.14"
   }
 }

@@ -1,20 +1,24 @@
 import { Router } from 'express';
-import { leerJson, guardarJson, obtenerSiguienteId } from '../utils/db.js';
+import { Venta } from '../models/Venta.js';
+import { Usuario } from '../models/Usuario.js';
+import { Producto } from '../models/Producto.js';
+import { obtenerSiguienteId } from '../utils/secuencia.js';
+import { verificarToken } from '../middlewares/auth.js';
 
 const router = Router();
 
 // GET /ventas
 router.get('/', async (req, res) => {
   try {
-    const { ventas } = await leerJson('ventas.json');
+    const ventas = await Venta.find().select('-_id').lean();
     res.json({ ventas });
   } catch (error) {
     res.status(500).json({ mensaje: 'Error al obtener ventas', error: error.message });
   }
 });
 
-// POST /ventas
-router.post('/', async (req, res) => {
+// POST /ventas  (requiere token: comprar es una acción clave)
+router.post('/', verificarToken, async (req, res) => {
   try {
     const { usuarioId, items } = req.body;
 
@@ -22,11 +26,7 @@ router.post('/', async (req, res) => {
       return res.status(400).json({ mensaje: 'Debe enviar usuarioId e items de la venta' });
     }
 
-    const dataUsuarios = await leerJson('usuarios.json');
-    const dataProductos = await leerJson('productos.json');
-    const dataVentas = await leerJson('ventas.json');
-
-    const usuarioExiste = dataUsuarios.usuarios.some((usuario) => usuario.id === Number(usuarioId));
+    const usuarioExiste = await Usuario.exists({ id: Number(usuarioId) });
 
     if (!usuarioExiste) {
       return res.status(404).json({ mensaje: 'El usuario indicado no existe' });
@@ -35,9 +35,7 @@ router.post('/', async (req, res) => {
     const itemsNormalizados = [];
 
     for (const item of items) {
-      const producto = dataProductos.productos.find(
-        (productoActual) => productoActual.id === Number(item.productoId)
-      );
+      const producto = await Producto.findOne({ id: Number(item.productoId) }).lean();
 
       if (!producto) {
         return res.status(404).json({ mensaje: `El producto ${item.productoId} no existe` });
@@ -67,18 +65,17 @@ router.post('/', async (req, res) => {
       0
     );
 
-    const nuevaVenta = {
-      id: obtenerSiguienteId(dataVentas.ventas),
+    const nuevaVenta = await Venta.create({
+      id: await obtenerSiguienteId(Venta),
       usuarioId: Number(usuarioId),
       fecha: new Date().toISOString().slice(0, 10),
       total,
       items: itemsNormalizados
-    };
+    });
 
-    dataVentas.ventas.push(nuevaVenta);
-    await guardarJson('ventas.json', dataVentas);
+    const venta = await Venta.findOne({ id: nuevaVenta.id }).select('-_id').lean();
 
-    res.status(201).json({ mensaje: 'Venta creada correctamente', venta: nuevaVenta });
+    res.status(201).json({ mensaje: 'Venta creada correctamente', venta });
   } catch (error) {
     res.status(500).json({ mensaje: 'Error al crear venta', error: error.message });
   }
